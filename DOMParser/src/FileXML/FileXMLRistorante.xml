@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu>
+	<antipasti>
+		<antipasto>
+			<nome>Tagliere di Terra</nome>
+			<prezzo>15.50</prezzo>
+		</antipasto>
+		<antipasto>
+			<nome>Crostini misti</nome>
+			<prezzo>6.70</prezzo>
+		</antipasto>
+	</antipasti>
+	<primi>
+		<primo>
+			<nome>Spaghetti allo scoglio</nome>
+			<prezzo>19.50</prezzo>
+		</primo>
+		<primo>
+			<nome>Taglietelle al cinghiale</nome>
+			<prezzo>21.80</prezzo>
+		</primo>
+	</primi>
+	<secondi>
+		<secondo>
+			<nome>Tagliata rucola e grana</nome>
+			<prezzo>25.50</prezzo>
+		</secondo>
+		<secondo>
+			<nome>Branzino con patate</nome>
+			<prezzo>17.40</prezzo>
+		</secondo>
+	</secondi>
+	<dolci>
+		<dolce>
+			<nome>Tiramisù</nome>
+			<prezzo>6.10</prezzo>
+		</dolce>
+		<dolce>
+			<nome>Torna della nonna</nome>
+			<prezzo>10.20</prezzo>
+		</dolce>
+	</dolci>
+</menu>
