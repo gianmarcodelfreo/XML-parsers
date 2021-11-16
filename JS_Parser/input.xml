@@ -19,17 +19,17 @@
     <class section="5" specialization="Meccanica">
         <student>
           <name>Lorenzo</name>
-          <surname>Bertocchini</surname>
+          <surname>Di Dio</surname>
           <age>18</age>
           <gender>Uomo</gender>
-          <dataOfBirth>2003-02-21</dataOfBirth>
+          <dataOfBirth>2003-02-20</dataOfBirth>
         </student>
         <student>
-          <name>Rachele</name>
-          <surname>Giordani</surname>
+          <name>Mattia</name>
+          <surname>Simoncini</surname>
           <age>18</age>
-          <gender>Donna</gender>
-          <dataOfBirth>2003-12-25</dataOfBirth>
+          <gender>Uomo</gender>
+          <dataOfBirth>2003-09-02</dataOfBirth>
         </student>
     </class>
 </School>
