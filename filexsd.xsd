@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <xsd:element name="School" type="SchoolType"/>
-    <xsd:complexType name="SchoolType">
-        <xsd:sequence>
-            <xsd:element name="class" type="classType" minOccurs="1" maxOccurs="unbounded"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="classType">
-        <xsd:sequence>
-            <xsd:element name="student" type="studentType" minOccurs="1" maxOccurs="unbounded"/>
-        </xsd:sequence>
-        <xsd:attribute name="section" type="xsd:positiveInteger"/>
-        <xsd:attribute name="specialization" type="specializationType"/>
-    </xsd:complexType>
-    <xsd:complexType name="studentType">
-        <xsd:sequence>
-            <xsd:element name="name" type="xsd:string" minOccurs="1"/>
-            <xsd:element name="surname" type="xsd:string" minOccurs="1"/>
-            <xsd:element name="age" type="xsd:positiveInteger" minOccurs="1"/>
-            <xsd:element name="gender" type="genderType" minOccurs="1"/>
-            <xsd:element name="dataOfBirth" type="xsd:date" minOccurs="1"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:simpleType name="genderType">
-        <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="Uomo"/>
-            <xsd:enumeration value="Donna"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-    <xsd:simpleType name="specializationType">
-        <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="Informatica"/>
-            <xsd:enumeration value="Meccanica"/>
-            <xsd:enumeration value="Elettronica"/>
-            <xsd:enumeration value="Biotecnologie ambientali"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-</xsd:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="School" type="SchoolType"/>
+    <xs:complexType name="SchoolType">
+        <xs:sequence>
+            <xs:element name="class" type="classType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="classType">
+        <xs:sequence>
+            <xs:element name="student" type="studentType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="section" type="xs:positiveInteger"/>
+        <xs:attribute name="specialization" type="specializationType"/>
+    </xs:complexType>
+    <xs:complexType name="studentType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string" minOccurs="1"/>
+            <xs:element name="surname" type="xs:string" minOccurs="1"/>
+            <xs:element name="age" type="xs:positiveInteger" minOccurs="1"/>
+            <xs:element name="gender" type="genderType" minOccurs="1"/>
+            <xs:element name="dataOfBirth" type="xs:date" minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="genderType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Uomo"/>
+            <xs:enumeration value="Donna"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="specializationType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Informatica"/>
+            <xs:enumeration value="Meccanica"/>
+            <xs:enumeration value="Elettronica"/>
+            <xs:enumeration value="Biotecnologie ambientali"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
