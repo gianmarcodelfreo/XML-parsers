@@ -30,6 +30,9 @@ public class DOMParser {
 		//Creazione di un'istanza di DocumentBuilder
 		DocumentBuilder documentBuilder = factoryDOM.newDocumentBuilder();
 		
+		//Settiamo il valore dell'ErrorHandler a null in modo da utilizzare quello di default
+		documentBuilder.setErrorHandler(null);
+		
 		//Creazione di un oggetto di tipo file con uno specifico percorso (Il file coincide con quello da parsare)
 		File fileXML = new File (path);
 		
