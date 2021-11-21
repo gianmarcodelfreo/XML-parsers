@@ -6,7 +6,7 @@ Il parser è un algoritmo di un programma applicativo. Effettuare il parsing di 
   <li>DOM Parser</li>
     <ul>
       <li>Java</li>
-      <li>Javascript</li>
+      <li>JavaScript</li>
     </ul>
   <li>SAX Parser</li>
   <ul>
