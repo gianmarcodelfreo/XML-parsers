@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?display table-view?>
 <School >
-    <class section="5" specialization="Informatica"><student>
+    <class section="5" specialization="Informatica">
+        <student>
           <name>Tommaso</name>
           <surname>Parenti</surname>
           <age>18</age>
