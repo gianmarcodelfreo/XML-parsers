@@ -81,15 +81,14 @@ public class DefaultHandler_example extends DefaultHandler {
     // Metodo che viene richiamato ogni volta che viene incontrato un carattere di testo
     @Override
     public void characters(char ch[], int start, int length) {
-        currentValue.append(ch, start, length);
+    	currentValue.append(ch, start, length);
     }
 
     // Metodo che viene richiamato ogni volta che viene incontrato uno spazio ignorabile
     @Override
     public void ignorableWhitespace (char ch[], int start, int length)
-        throws SAXException
-    {
-       	System.out.println("Spazio ignorabile");
+        throws SAXException {
+       	System.out.println(tabber + "Spazio ignorabile");
     }
 
 
