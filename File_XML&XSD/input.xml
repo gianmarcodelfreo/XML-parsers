@@ -7,30 +7,30 @@
           <surname>Parenti</surname>
           <age>18</age>
           <gender>Uomo</gender>
-          <dataOfBirth>2003-03-10</dataOfBirth>
+          <dateOfBirth>2003-03-10</dateOfBirth>
         </student>
         <student>
           <name>Gian Marco</name>
           <surname>Del Freo</surname>
           <age>18</age>
           <gender>Uomo</gender>
-          <dataOfBirth>2003-06-27</dataOfBirth>
+          <dateOfBirth>2003-06-27</dateOfBirth>
         </student>
     </class>
     <class section="5" specialization="Meccanica">
         <student>
           <name>Lorenzo</name>
-          <surname>Bertocchini</surname>
+          <surname>Di Dio</surname>
           <age>18</age>
           <gender>Uomo</gender>
-          <dataOfBirth>2003-02-21</dataOfBirth>
+          <dateOfBirth>2003-02-20</dateOfBirth>
         </student>
         <student>
-          <name>Rachele</name>
-          <surname>Giordani</surname>
+          <name>Mattia</name>
+          <surname>Simoncini</surname>
           <age>18</age>
-          <gender>Donna</gender>
-          <dataOfBirth>2003-12-25</dataOfBirth>
+          <gender>Non specificato</gender>
+          <dateOfBirth>2003-09-02</dateOfBirth>
         </student>
     </class>
 </School>

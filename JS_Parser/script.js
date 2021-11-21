@@ -2,14 +2,19 @@ if (window.XMLHttpRequest) {
   xmlhttp = new XMLHttpRequest(); // code for IE7+, Firefox, Chrome, Opera, Safari
 }
 
+const _FILEPATH = "../File_XML&XSD/input.xml";
+xmlhttp.open("GET", _FILEPATH, false);
+
 xmlhttp.onload = () => {
   const xmlInput = new DOMParser().parseFromString(
     xmlhttp.responseText,
     "text/xml"
   );
 
+  // Posizione di stampa degli elementi
   const list = document.getElementById("content");
 
+  // Recupero dell'oggetto all'interno del file XML
   const student = xmlInput.getElementsByTagName("student");
 
   // Recupero dei dati
@@ -23,7 +28,7 @@ xmlhttp.onload = () => {
       age: student[i].getElementsByTagName("age")[0].textContent,
       gender: student[i].getElementsByTagName("gender")[0].textContent,
       dataOfBirth:
-        student[i].getElementsByTagName("dataOfBirth")[0].textContent,
+        student[i].getElementsByTagName("dateOfBirth")[0].textContent,
     };
 
     list.innerHTML += `
@@ -33,7 +38,7 @@ xmlhttp.onload = () => {
         <li class="list-group-item"><b>Cognome</b> ${studentInfo.surname}</li>
         <li class="list-group-item"><b>Età</b> ${studentInfo.age}</li>
         <li class="list-group-item"><b>Sesso</b> ${studentInfo.gender}</li>
-        <li class="list-group-item"><b>Data di nascita</b> ${studentInfo.dataOfBirth}</li>
+        <li class="list-group-item"><b>Data di nascita</b> ${studentInfo.dateOfBirth}</li>
       </ul>
     `;
   }
@@ -51,5 +56,4 @@ xmlhttp.onload = () => {
   console.log("Attributo: ", classTag.getAttribute("specialization"));
 };
 
-xmlhttp.open("GET", "input.xml", false);
 xmlhttp.send();
