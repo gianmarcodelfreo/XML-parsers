@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="School" type="SchoolType"/>
+    <xs:complexType name="SchoolType">
+        <xs:sequence>
+            <xs:element name="class" type="classType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="classType">
+        <xs:sequence>
+            <xs:element name="student" type="studentType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="section" type="xs:positiveInteger"/>
+        <xs:attribute name="specialization" type="specializationType"/>
+    </xs:complexType>
+    <xs:complexType name="studentType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string" minOccurs="1"/>
+            <xs:element name="surname" type="xs:string" minOccurs="1"/>
+            <xs:element name="age" type="xs:positiveInteger" minOccurs="1"/>
+            <xs:element name="gender" type="genderType" minOccurs="1"/>
+            <xs:element name="dataOfBirth" type="xs:date" minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="genderType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Uomo"/>
+            <xs:enumeration value="Donna"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="specializationType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Informatica"/>
+            <xs:enumeration value="Meccanica"/>
+            <xs:enumeration value="Elettronica"/>
+            <xs:enumeration value="Biotecnologie ambientali"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

@@ -1,5 +1,9 @@
+import java.io.IOException;
+
 import org.xml.sax.Attributes;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
 public class DefaultHandler_example extends DefaultHandler {
@@ -80,18 +84,53 @@ public class DefaultHandler_example extends DefaultHandler {
         currentValue.append(ch, start, length);
     }
 
-    //Riceve la notifica di uno spazio ingorabile
+    // Metodo che viene richiamato ogni volta che viene incontrato uno spazio ignorabile
     @Override
-    public void ignorableWhitespace(char ch[], int start, int length)
-    throws SAXException {
-        System.out.println(tabber + "Spazio ignorabile");
+    public void ignorableWhitespace (char ch[], int start, int length)
+        throws SAXException
+    {
+       	System.out.println("Spazio ignorabile");
     }
 
-    //Riceve la notifica di una PI.
+
+    // Metodo che viene richiamato ogni volta che viene incontrato un PI
     @Override
     public void processingInstruction(String target, String data)
     throws SAXException {
         System.out.println(tabber + "Istruzione di processamento (Target,Data): " + target + "," + data);
+    }
+    
+    // Metodo che viene richiamato ogni volta che avviene un warning da parte del parser
+    @Override
+    public void warning (SAXParseException e)
+        throws SAXException
+    {
+    	throw e;
+    }
+
+    // Metodo che viene richiamato ogni volta che avviene un error da parte del parser
+    @Override
+    public void error (SAXParseException e)
+        throws SAXException
+    {
+    	throw e;
+    }
+
+    // Metodo che viene richiamato ogni volta che avviene un fatal error da parte del parser
+    @Override
+    public void fatalError (SAXParseException e)
+        throws SAXException
+    {
+        throw e;
+    }
+    
+    // Metodo che 
+    @Override
+    public InputSource resolveEntity (String publicId, String systemId)
+        throws IOException, SAXException
+    {
+    	System.out.println("Entità trovata con public ID " + publicId + " e system ID " + systemId);
+    	return null;
     }
 
 }
