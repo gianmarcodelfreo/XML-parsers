@@ -19,7 +19,7 @@
             <xs:element name="surname" type="xs:string" minOccurs="1"/>
             <xs:element name="age" type="xs:positiveInteger" minOccurs="1"/>
             <xs:element name="gender" type="genderType" minOccurs="1"/>
-            <xs:element name="dataOfBirth" type="xs:date" minOccurs="1"/>
+            <xs:element name="dateOfBirth" type="xs:date" minOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
     <xs:simpleType name="genderType">
