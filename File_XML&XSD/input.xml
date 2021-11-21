@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?display table-view?>
+<School >
+    <class section="5" specialization="Informatica">
+        <student>
+          <name>Tommaso</name>
+          <surname>Parenti</surname>
+          <age>18</age>
+          <gender>Uomo</gender>
+          <dataOfBirth>2003-03-10</dataOfBirth>
+        </student>
+        <student>
+          <name>Gian Marco</name>
+          <surname>Del Freo</surname>
+          <age>18</age>
+          <gender>Uomo</gender>
+          <dataOfBirth>2003-06-27</dataOfBirth>
+        </student>
+    </class>
+    <class section="5" specialization="Meccanica">
+        <student>
+          <name>Lorenzo</name>
+          <surname>Bertocchini</surname>
+          <age>18</age>
+          <gender>Uomo</gender>
+          <dataOfBirth>2003-02-21</dataOfBirth>
+        </student>
+        <student>
+          <name>Rachele</name>
+          <surname>Giordani</surname>
+          <age>18</age>
+          <gender>Donna</gender>
+          <dataOfBirth>2003-12-25</dataOfBirth>
+        </student>
+    </class>
+</School>
