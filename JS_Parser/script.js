@@ -2,7 +2,7 @@ if (window.XMLHttpRequest) {
   xmlhttp = new XMLHttpRequest(); // code for IE7+, Firefox, Chrome, Opera, Safari
 }
 
-const _FILEPATH = "../inputs/example.min.xml";
+const _FILEPATH = "../inputs/example.xml";
 xmlhttp.open("GET", _FILEPATH, false);
 
 xmlhttp.onload = () => {
@@ -27,7 +27,7 @@ xmlhttp.onload = () => {
       surname: student[i].getElementsByTagName("surname")[0].textContent,
       age: student[i].getElementsByTagName("age")[0].textContent,
       gender: student[i].getElementsByTagName("gender")[0].textContent,
-      dataOfBirth:
+      dateOfBirth:
         student[i].getElementsByTagName("dateOfBirth")[0].textContent,
     };
 
