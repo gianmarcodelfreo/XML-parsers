@@ -186,7 +186,7 @@ public class DOMParser {
 			//Si crea un'istanza di SchemaFactory con il namespace standard di schema 
 			SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 			
-			//Viene parsato lo specifico file presente in schemafile
+			//Viene creata una nuova istanza di schema
 			Schema schema = schemaFactory.newSchema(schemaFile);
 			
 			//Viene creata un'istanza di un validatore basato sul file schema precedente
