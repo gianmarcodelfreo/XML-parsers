@@ -15,7 +15,7 @@
     </xs:complexType>
     <xs:complexType name="studentType">
         <xs:sequence>
-            <xs:element name="name" type="xs:string" minOccurs="1"/>
+            <xs:element name="name" type="xs:token" minOccurs="1"/>
             <xs:element name="surname" type="xs:string" minOccurs="1"/>
             <xs:element name="age" type="xs:positiveInteger" minOccurs="1"/>
             <xs:element name="gender" type="genderType" minOccurs="1"/>
