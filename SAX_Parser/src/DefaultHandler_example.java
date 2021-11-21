@@ -124,12 +124,18 @@ public class DefaultHandler_example extends DefaultHandler {
     }
     
     // Metodo che 
-    @Override
+  //Controlla se l'entità trovata ha un systemId uguale a quello dell'XML che va parsato.@Override
     public InputSource resolveEntity (String publicId, String systemId)
         throws IOException, SAXException
     {
     	System.out.println("Entità trovata con public ID " + publicId + " e system ID " + systemId);
-    	return null;
+    	if (systemId.equals ("https://raw.githubusercontent.com/Gian-Marco-Del-Freo/XML-parsers/main/inputs/test.xml")) {
+            System.out.println("Risoluzione dell'entità");
+            return new InputSource("https://raw.githubusercontent.com/Gian-Marco-Del-Freo/XML-parsers/main/inputs/test.xml");
+         } else {
+            // Usa il comportamento di default
+            return null;
+         }
     }
 
 }

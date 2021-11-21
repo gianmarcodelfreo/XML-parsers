@@ -18,8 +18,8 @@ public class SAXParser_example {
     public static void main(String[] args) {
     	try {
     		//Validazione con XSD
-            URL urlXSD = new URL("https://raw.githubusercontent.com/Gian-Marco-Del-Freo/XML-parsers/main/Inputs_file/template.xsd");
-            URL urlXML = new URL("https://raw.githubusercontent.com/Gian-Marco-Del-Freo/XML-parsers/main/Inputs_file/example.min.xml");
+            URL urlXSD = new URL("https://raw.githubusercontent.com/Gian-Marco-Del-Freo/XML-parsers/main/inputs/template.xsd");
+            URL urlXML = new URL("https://raw.githubusercontent.com/Gian-Marco-Del-Freo/XML-parsers/main/inputs/example.min.xml");
             Source xmlFile = new StreamSource(urlXML.openStream());
             SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 	        Schema schema = schemaFactory.newSchema(urlXSD);
