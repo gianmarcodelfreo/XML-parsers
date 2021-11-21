@@ -123,19 +123,27 @@ public class DefaultHandler_example extends DefaultHandler {
         throw e;
     }
     
-    // Metodo che 
-  //Controlla se l'entità trovata ha un systemId uguale a quello dell'XML che va parsato.@Override
+    // Metodo che risolve un entità trovata.
+    @Override
     public InputSource resolveEntity (String publicId, String systemId)
         throws IOException, SAXException
     {
     	System.out.println("Entità trovata con public ID " + publicId + " e system ID " + systemId);
-    	if (systemId.equals ("https://raw.githubusercontent.com/Gian-Marco-Del-Freo/XML-parsers/main/inputs/test.xml")) {
+    	
+    	//Controlla se l'entità trovata ha un systemId uguale a quello dell'XML che va parsato.
+    	if (systemId.equals ("https://raw.githubusercontent.com/Gian-Marco-Del-Freo/XML-parsers/main/inputs/example.xml")) {
             System.out.println("Risoluzione dell'entità");
-            return new InputSource("https://raw.githubusercontent.com/Gian-Marco-Del-Freo/XML-parsers/main/inputs/test.xml");
+            return new InputSource("https://raw.githubusercontent.com/Gian-Marco-Del-Freo/XML-parsers/main/inputs/example.xml");
          } else {
-            // Usa il comportamento di default
-            return null;
-         }
+        	//Controlla se l'entità trovata ha un systemId uguale a quello dell'XSD che viene utilizzato per validare.
+	    	if (systemId.equals ("https://raw.githubusercontent.com/Gian-Marco-Del-Freo/XML-parsers/main/inputs/template.xsd")) {
+	            System.out.println("Risoluzione dell'entità");
+	            return new InputSource("https://raw.githubusercontent.com/Gian-Marco-Del-Freo/XML-parsers/main/inputs/template.xml");
+	         } else {
+	            // Usa il comportamento di default
+	            return null;
+	        }
+	    }
     }
 
 }
