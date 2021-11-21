@@ -3,10 +3,7 @@
 <School >
     <class section="5" specialization="Informatica">
         <student>
-          <name>
-                 
-               
-               Tommaso</name>
+          <name>Tommaso</name>
           <surname>Parenti</surname>
           <age>18</age>
           <gender>Uomo</gender>
