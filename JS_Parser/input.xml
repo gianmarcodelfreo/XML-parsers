@@ -16,7 +16,7 @@
           <dataOfBirth>2003-06-27</dataOfBirth>
         </student>
     </class>
-    <class section="5" specialization="Meccanica">
+    <class section="3" specialization="Fisica">
         <student>
           <name>Lorenzo</name>
           <surname>Di Dio</surname>
