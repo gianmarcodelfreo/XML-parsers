@@ -17,7 +17,6 @@ public class SAXParser_example {
 
     public static void main(String[] args) {
     	try {
-    		
     		//Validazione con XSD
             URL urlXSD = new URL("https://raw.githubusercontent.com/Gian-Marco-Del-Freo/XML-parsers/main/Inputs_file/template.xsd");
             URL urlXML = new URL("https://raw.githubusercontent.com/Gian-Marco-Del-Freo/XML-parsers/main/Inputs_file/example.min.xml");
