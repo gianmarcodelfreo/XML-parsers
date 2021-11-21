@@ -1,17 +1,27 @@
 package it.davincifascetti.quintainfa.DOM;
 
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -21,9 +31,23 @@ import org.xml.sax.SAXException;
 
 public class DOMParser {
 
-	private static final String path="./src/FileXML/FileXMLRistorante.xml";
+	//File XML
+	private static final String FILEXML="https://raw.githubusercontent.com/Gian-Marco-Del-Freo/XML-parsers/main/Inputs_file/example.min.xml";
+	
+	//File XSD
+	private static final String FILEXSD="https://raw.githubusercontent.com/Gian-Marco-Del-Freo/XML-parsers/main/Inputs_file/template.xsd";
 	
 	private static void parserDOM(String path) throws ParserConfigurationException, SAXException, IOException, TransformerException {
+		
+		//Creiamo un oggetto di tipo URL che contiene il percorso del file XML
+		URL url = new URL(path);
+		
+		//Definiamo un'istanza di URLConnection che permette di aprire una comunicazione attraverso il link
+		URLConnection urlConnection = url.openConnection();
+		
+		//Si definisce uno spazio di memoria attraverso la comunicazione stabilita con urlConnection
+		InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+		
 		//Creazione di un'istanza di DocumentBuilderFactory attraverso il metodo statico newInstance()
 		DocumentBuilderFactory factoryDOM = DocumentBuilderFactory.newInstance();
 		
@@ -33,11 +57,8 @@ public class DOMParser {
 		//Settiamo il valore dell'ErrorHandler a null in modo da utilizzare quello di default
 		documentBuilder.setErrorHandler(null);
 		
-		//Creazione di un oggetto di tipo file con uno specifico percorso (Il file coincide con quello da parsare)
-		File fileXML = new File (path);
-		
 		//Dichiarazione di un elemento Document a cui verrà assegnato il risultato del parser del file XML
-		Document document = documentBuilder.parse(fileXML);
+		Document document = documentBuilder.parse(in);
 		
 		//Si prende il primo elemento del documento e si eleminano eventuali accenti, apostrofi ecc...
 		document.getDocumentElement().normalize();
@@ -45,18 +66,21 @@ public class DOMParser {
 		//Stampa a video del nome del root element
 		System.out.println("Root Element: " + document.getDocumentElement().getNodeName());
 		
-		//Si inserisce in una lista di nodi, gli elementi antipasti e antipasto
-		NodeList nodeListAntipasti = document.getDocumentElement().getElementsByTagName("antipasti"), 
-				nodeListAntipasto = document.getDocumentElement().getElementsByTagName("antipasto");
+		//Si inserisce in una lista di nodi, gli elementi class
+		NodeList nodeListclass = document.getDocumentElement().getElementsByTagName("class"),
+				nodeListstudent=null;
 		
-		//Si dichiarano due nodi.
-		Node nodeAntipasti = null, nodeAntipasto = null;
+		//Si dichiarano due nodi
+		Node nodeclass = null, nodestudent = null;
 		
 		//Si scorre l'intero contenuto della lista di nodi antipasti
-		for (int i=0; i<nodeListAntipasti.getLength(); i++) {
+		for (int i=0; i<nodeListclass.getLength(); i++) {
 			
 			//Si inserisce l'intero contenuto di ogni elemento in un nodo
-			nodeAntipasti = nodeListAntipasti.item(i);
+			nodeclass = nodeListclass.item(i);
+			
+			//Si inserisce in un nodo il contenuto del nodo figlio
+			nodeListstudent = nodeclass.getChildNodes();
 			
 			/*
 			Element createdantipasto = document.createElement("antipasto");
@@ -70,201 +94,58 @@ public class DOMParser {
 			
 			System.out.println("-------------------------------------------");
 			
-			//Stampa a video del valore dell'elemento antipasti
-			System.out.println("	Element: " + nodeAntipasti.getNodeName());
+			//Stampa a video del valore dell'elemento class
+			System.out.println("	Element: " + nodeclass.getNodeName());
 			
-			//Si verifica se sono presenti altri elementi all'interno di un elemento antipasti
-			if (nodeAntipasti.getNodeType() == Node.ELEMENT_NODE) {
+			
+			//Si verifica se sono presenti altri elementi all'interno di un elemento class
+			if (nodeclass.getNodeType() == Node.ELEMENT_NODE) {
 				
-				//Si scorre l'intero contenuto della lista di nodi antipasto
-				for (int j=0; j<nodeListAntipasto.getLength(); j++) {
+				//Si scorre l'intero contenuto della lista di nodi class
+				for (int j=0; j<nodeListstudent.getLength(); j++) {
 					
 					//Si inserisce l'intero contenuto di ogni elemento in un nodo
-					nodeAntipasto = nodeListAntipasto.item(j);
+					nodestudent = nodeListstudent.item(j);
 					System.out.println("-------------------------------------------");
 					
-					//Stampa a video del valore dell'elemento antipasto
-					System.out.println("		Element: " + nodeAntipasto.getNodeName());
+					//Stampa a video del valore dell'elemento studente
+					System.out.println("		Element: " + nodestudent.getNodeName());
 					
-					//Si verifica se sono presenti altri elementi all'interno di un elemento antipasto
-					if (nodeAntipasto.getNodeType() == Node.ELEMENT_NODE) {
+					//Si verifica se sono presenti altri elementi all'interno di un elemento studente
+					if (nodestudent.getNodeType() == Node.ELEMENT_NODE) {
 						
-						//Si crea un elemento a cui viene assegnato il valore del contenuto del nodo antipasto
-						Element element = (Element) nodeAntipasto;
+						//Si crea un elemento a cui viene assegnato il valore del contenuto del nodo studente
+						Element element = (Element) nodestudent;
 						
-						//Si inserisce in una stringa il valore dell'elemento nome
-						String name = element.getElementsByTagName("nome").item(0).getTextContent();
+						//Si inserisce in una stringa il valore dell'elemento name
+						String name = element.getElementsByTagName("name").item(0).getTextContent();
 						
-						//Si inserisce in una stringa il valore dell'elemento prezzo
-						String price = element.getElementsByTagName("prezzo").item(0).getTextContent();
+						//Si inserisce in una stringa il valore dell'elemento surname
+						String surname = element.getElementsByTagName("surname").item(0).getTextContent();
 						
-						//Stampa a video del valore dell'elemento nome
-						System.out.println("		nome: " + name);
+						//Si inserisce in una stringa il valore dell'elemento age
+						String age = element.getElementsByTagName("age").item(0).getTextContent();
 						
-						//Stampa a video del valore dell'elemento prezzo
-						System.out.println("		prezzo: " + price);
-					}
-				}
-			}
-		}
-		
-		//Si inserisce in una lista di nodi, gli elementi primi e primo
-		NodeList nodeListPrimi = document.getDocumentElement().getElementsByTagName("primi"),
-				nodeListPrimo = document.getDocumentElement().getElementsByTagName("primo");
-		
-		//Si dichiarano due nodi
-		Node nodePrimi = null, nodePrimo = null;
-		
-		//Si scorre l'intero contenuto della lista di nodi primi
-		for (int i=0; i<nodeListPrimi.getLength(); i++) {
-			
-			//Si inserisce l'intero contenuto di ogni elemento in un nodo
-			nodePrimi = nodeListPrimi.item(i);
-			
-			System.out.println("-------------------------------------------");
-			
-			//Stampa a video del valore dell'elemento primi
-			System.out.println("	Element: " + nodePrimi.getNodeName());
-			
-			//Si verifica se sono presenti altri elementi all'interno di un elemento primi
-			if (nodePrimi.getNodeType() == Node.ELEMENT_NODE) {
-				
-				//Si scorre l'intero contenuto della lista di nodi primo
-				for (int j=0; j<nodeListPrimo.getLength(); j++) {
-					
-					//Si inserisce l'intero contenuto di ogni elemento in un nodo
-					nodePrimo = nodeListPrimo.item(j);
-					
-					System.out.println("-------------------------------------------");
-					
-					//Stampa a video del valore dell'elemento primo
-					System.out.println("		Element: " + nodePrimo.getNodeName());
-					
-					//Si verifica se sono presenti altri elementi all'interno di un elemento primo
-					if (nodePrimo.getNodeType() == Node.ELEMENT_NODE) {
+						//Si inserisce in una stringa il valore dell'elemento gender
+						String gender = element.getElementsByTagName("gender").item(0).getTextContent();
 						
-						//Si crea un elemento a cui viene assegnato il valore del contenuto del nodo primo
-						Element element = (Element) nodePrimo;
+						//Si inserisce in una stringa il valore dell'elemento dateOfBirth
+						String dateOfBirth = element.getElementsByTagName("dateOfBirth").item(0).getTextContent();
 						
-						//Si inserisce in una stringa il valore dell'elemento nome
-						String name = element.getElementsByTagName("nome").item(0).getTextContent();
+						//Stampa a video del valore dell'elemento name
+						System.out.println("		name: " + name);
 						
-						//Si inserisce in una stringa il valore dell'elemento prezzo
-						String price = element.getElementsByTagName("prezzo").item(0).getTextContent();
+						//Stampa a video del valore dell'elemento surname
+						System.out.println("		surname: " + surname);
 						
-						//Stampa a video del valore dell'elemento nome
-						System.out.println("		nome: " + name);
+						//Stampa a video del valore dell'elemento age
+						System.out.println("		age: " + age);
 						
-						//Stampa a video del valore dell'elemento prezzo
-						System.out.println("		prezzo: " + price);
-					}
-				}
-			}
-		}
-		
-		//Si inserisce in una lista di nodi, gli elementi secondi e secondo
-		NodeList nodeListSecondi = document.getDocumentElement().getElementsByTagName("secondi"),
-				nodeListSecondo = document.getDocumentElement().getElementsByTagName("secondo");
-		
-		//Si dichiarano due nodi
-		Node nodeSecondi= null, nodeSecondo = null;
-		
-		//Si scorre l'intero contenuto della lista di nodi secondi
-		for (int i=0; i<nodeListSecondi.getLength(); i++) {
-			
-			//Si inserisce l'intero contenuto di ogni elemento in un nodo
-			nodeSecondi = nodeListSecondi.item(i);
-			
-			System.out.println("-------------------------------------------");
-			
-			//Stampa a video del valore dell'elemento secondi
-			System.out.println("	Element: " + nodeSecondi.getNodeName());
-			
-			//Si verifica se sono presenti altri elementi all'interno di un elemento secondi
-			if (nodeSecondi.getNodeType() == Node.ELEMENT_NODE) {
-				
-				//Si scorre l'intero contenuto della lista di nodi secondo
-				for (int j=0; j<nodeListSecondo.getLength(); j++) {
-					
-					//Si inserisce l'intero contenuto di ogni elemento in un nodo
-					nodeSecondo = nodeListSecondo.item(j);
-					
-					System.out.println("-------------------------------------------");
-					
-					//Stampa a video del valore dell'elemento secondo
-					System.out.println("		Element: " + nodeSecondo.getNodeName());
-					
-					//Si verifica se sono presenti altri elementi all'interno di un elemento secondo
-					if (nodeSecondo.getNodeType() == Node.ELEMENT_NODE) {
+						//Stampa a video del valore dell'elemento gender
+						System.out.println("		gender: " + gender);
 						
-						//Si crea un elemento a cui viene assegnato il valore del contenuto del nodo secondo
-						Element element = (Element) nodeSecondo;
-						
-						//Si inserisce in una stringa il valore dell'elemento nome
-						String name = element.getElementsByTagName("nome").item(0).getTextContent();
-						
-						//Si inserisce in una stringa il valore dell'elemento prezzo
-						String price = element.getElementsByTagName("prezzo").item(0).getTextContent();
-						
-						//Stampa a video del valore dell'elemento nome
-						System.out.println("		nome: " + name);
-						
-						//Stampa a video del valore dell'elemento prezzo
-						System.out.println("		prezzo: " + price);
-					}
-				}
-			}
-		}
-		
-		//Si inserisce in una lista di nodi, gli elementi dolci e dolce
-		NodeList nodeListDolci = document.getDocumentElement().getElementsByTagName("dolci"),
-				nodeListDolce = document.getDocumentElement().getElementsByTagName("dolce");
-		
-		//Si dichiarano due nodi
-		Node nodeDolci= null, nodeDolce = null;
-		
-		//Si scorre l'intero contenuto della lista di nodi dolci
-		for (int i=0; i<nodeListDolci.getLength(); i++) {
-			
-			//Si inserisce l'intero contenuto di ogni elemento in un nodo
-			nodeDolci = nodeListDolci.item(i);
-			
-			System.out.println("-------------------------------------------");
-			
-			//Stampa a video del valore dell'elemento dolci
-			System.out.println("	Element: " + nodeDolci.getNodeName());
-			
-			//Si verifica se sono presenti altri elementi all'interno di un elemento dolci
-			if (nodeDolci.getNodeType() == Node.ELEMENT_NODE) {
-				
-				//Si scorre l'intero contenuto della lista di nodi dolce
-				for (int j=0; j<nodeListDolce.getLength(); j++) {
-					
-					//Si inserisce l'intero contenuto di ogni elemento in un nodo
-					nodeDolce = nodeListDolce.item(j);
-					
-					System.out.println("-------------------------------------------");
-					
-					//Stampa a video del valore dell'elemento dolce
-					System.out.println("		Element: " + nodeDolce.getNodeName());
-					
-					//Si verifica se sono presenti altri elementi all'interno di un elemento dolce
-					if (nodeDolce.getNodeType() == Node.ELEMENT_NODE) {
-						
-						//Si crea un elemento a cui viene assegnato il valore del contenuto del nodo dolce
-						Element element = (Element) nodeDolce;
-						
-						//Si inserisce in una stringa il valore dell'elemento nome
-						String name = element.getElementsByTagName("nome").item(0).getTextContent();
-						
-						//Si inserisce in una stringa il valore dell'elemento prezzo
-						String price = element.getElementsByTagName("prezzo").item(0).getTextContent();
-						
-						//Stampa a video del valore dell'elemento nome
-						System.out.println("		nome: " + name);
-						
-						//Stampa a video del valore dell'elemento prezzo
-						System.out.println("		prezzo: " + price);
+						//Stampa a video del valore dell'elemento dateOfBirth
+						System.out.println("		dateOfBirth: " + dateOfBirth);
 					}
 				}
 			}
@@ -282,12 +163,34 @@ public class DOMParser {
 	public static void main(String[] args) {
 		
 		try {
+			//Si fornisce il link del file XSD
+			URL schemaFile = new URL(DOMParser.FILEXSD);
+			
+			//Si fornisce il file XML attraverso il percorso statico
+			Source xmlFile = new StreamSource(DOMParser.FILEXML);
+			
+			//Si crea un'istanza di SchemaFactory con il namespace standard di schema 
+			SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+			
+			//Viene parsato lo specifico file presente in schemafile
+			Schema schema = schemaFactory.newSchema(schemaFile);
+			
+			//Viene creata un'istanza di un validatore basato sul file schema precedente
+			Validator validator = schema.newValidator();
+			
+			//Viene validato il file XML 
+			validator.validate(xmlFile);
+			
+			//Stampa a video dell'effettiva validazione
+			System.out.println("✅ Documento valido ✅");
+			
+			System.out.println("-------------------------------------------");
+			
 			//Si richiama la funzione che effettua il parsing, specificando il valore di una variabile statica che rappresenta il percorso del file da analizzare
-			DOMParser.parserDOM(DOMParser.path);
+			DOMParser.parserDOM(DOMParser.FILEXML);
 			
 		//Eccezioni che si possono sollevare
 		} catch(ParserConfigurationException | SAXException | IOException | TransformerException e) {
-			
 			//Stampa a video un messaggio d'errore
 			System.out.println("⚠️ E' avvenuto un errore durante il parsing ⚠️");
 		} 
