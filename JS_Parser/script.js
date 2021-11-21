@@ -2,7 +2,7 @@ if (window.XMLHttpRequest) {
   xmlhttp = new XMLHttpRequest(); // code for IE7+, Firefox, Chrome, Opera, Safari
 }
 
-const _FILEPATH = "../File_XML&XSD/input.min.xml";
+const _FILEPATH = "../inputs/example.min.xml";
 xmlhttp.open("GET", _FILEPATH, false);
 
 xmlhttp.onload = () => {
