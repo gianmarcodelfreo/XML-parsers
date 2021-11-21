@@ -2,7 +2,6 @@ package it.davincifascetti.quintainfa.DOM;
 
 
 import java.io.BufferedInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -32,10 +31,13 @@ import org.xml.sax.SAXException;
 public class DOMParser {
 
 	//File XML
-	private static final String FILEXML="https://raw.githubusercontent.com/Gian-Marco-Del-Freo/XML-parsers/main/Inputs_file/example.min.xml";
+	private static final String FILEXML="https://raw.githubusercontent.com/Gian-Marco-Del-Freo/XML-parsers/main/inputs/example.min.xml";
+	
+	//File XML Output
+	private static final String FILEXMLOUTPUT="./src/Outputs_file/exampleOutput.xml";
 	
 	//File XSD
-	private static final String FILEXSD="https://raw.githubusercontent.com/Gian-Marco-Del-Freo/XML-parsers/main/Inputs_file/template.xsd";
+	private static final String FILEXSD="https://raw.githubusercontent.com/Gian-Marco-Del-Freo/XML-parsers/main/inputs/template.xsd";
 	
 	private static void parserDOM(String path) throws ParserConfigurationException, SAXException, IOException, TransformerException {
 		
@@ -60,7 +62,7 @@ public class DOMParser {
 		//Dichiarazione di un elemento Document a cui verrà assegnato il risultato del parser del file XML
 		Document document = documentBuilder.parse(in);
 		
-		//Si prende il primo elemento del documento e si eleminano eventuali accenti, apostrofi ecc...
+		//Si prende il primo elemento del documento e si eliminano eventuali accenti, apostrofi ecc...
 		document.getDocumentElement().normalize();
 		
 		//Stampa a video del nome del root element
@@ -79,18 +81,29 @@ public class DOMParser {
 			//Si inserisce l'intero contenuto di ogni elemento in un nodo
 			nodeclass = nodeListclass.item(i);
 			
-			//Si inserisce in un nodo il contenuto del nodo figlio
+			//Si inserisce in un nodo il contenuto dei nodi figli
 			nodeListstudent = nodeclass.getChildNodes();
 			
 			/*
-			Element createdantipasto = document.createElement("antipasto");
-			Element creatednome = document.createElement("nome");
-			Element createdprice = document.createElement("prezzo");
-			creatednome.setTextContent("Crostini salsiccia e stracchino");
-			createdprice.setTextContent("5.50");
-			createdantipasto.appendChild(creatednome);
-			createdantipasto.appendChild(createdprice);
-			nodeAntipasti.appendChild(createdantipasto);*/
+			Element createdstudent = document.createElement("student");
+			Element creatednome = document.createElement("name");
+			Element createdsurname = document.createElement("surname");
+			Element createdage = document.createElement("age");
+			Element createdgender = document.createElement("gender");
+			Element createddateOfBirth = document.createElement("dateOfBirth");
+			creatednome.setTextContent("Mario");
+			createdsurname.setTextContent("Rossi");
+			createdage.setTextContent("17");
+			createdgender.setTextContent("Uomo");
+			createddateOfBirth.setTextContent("2004-07-15");
+			
+			createdstudent.appendChild(creatednome);
+			createdstudent.appendChild(createdsurname);
+			createdstudent.appendChild(createdage);
+			createdstudent.appendChild(createdgender);
+			createdstudent.appendChild(createddateOfBirth);
+	
+			nodeclass.appendChild(createdstudent);*/
 			
 			System.out.println("-------------------------------------------");
 			
@@ -101,20 +114,20 @@ public class DOMParser {
 			//Si verifica se sono presenti altri elementi all'interno di un elemento class
 			if (nodeclass.getNodeType() == Node.ELEMENT_NODE) {
 				
-				//Si scorre l'intero contenuto della lista di nodi class
+				//Si scorre l'intero contenuto della lista di nodi student
 				for (int j=0; j<nodeListstudent.getLength(); j++) {
 					
 					//Si inserisce l'intero contenuto di ogni elemento in un nodo
 					nodestudent = nodeListstudent.item(j);
 					System.out.println("-------------------------------------------");
 					
-					//Stampa a video del valore dell'elemento studente
+					//Stampa a video del valore dell'elemento student
 					System.out.println("		Element: " + nodestudent.getNodeName());
 					
-					//Si verifica se sono presenti altri elementi all'interno di un elemento studente
+					//Si verifica se sono presenti altri elementi all'interno di un elemento student
 					if (nodestudent.getNodeType() == Node.ELEMENT_NODE) {
 						
-						//Si crea un elemento a cui viene assegnato il valore del contenuto del nodo studente
+						//Si crea un elemento a cui viene assegnato il valore del contenuto del nodo student
 						Element element = (Element) nodestudent;
 						
 						//Si inserisce in una stringa il valore dell'elemento name
@@ -151,11 +164,12 @@ public class DOMParser {
 			}
 		}
 		
-		/*TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		/*
+		TransformerFactory transformerFactory = TransformerFactory.newInstance();
 	    Transformer transformer = transformerFactory.newTransformer();
 	    DOMSource source = new DOMSource(document);
 
-	    StreamResult result = new StreamResult("./src/FileXML/FileXMLRistoranteOutput.xml");
+	    StreamResult result = new StreamResult(DOMParser.FILEXMLOUTPUT);
 	    transformer.transform(source, result);*/
 		
 	}
@@ -192,7 +206,7 @@ public class DOMParser {
 		//Eccezioni che si possono sollevare
 		} catch(ParserConfigurationException | SAXException | IOException | TransformerException e) {
 			//Stampa a video un messaggio d'errore
-			System.out.println("⚠️ E' avvenuto un errore durante il parsing ⚠️");
+			System.out.println("⚠️ E' avvenuto un errore durante il parsing ⚠️" + e);
 		} 
 	}
 
