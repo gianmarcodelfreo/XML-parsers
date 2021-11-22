@@ -24,6 +24,7 @@ import javax.xml.validation.Validator;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -75,11 +76,16 @@ public class DOMParser {
 		//Si dichiarano due nodi
 		Node nodeclass = null, nodestudent = null;
 		
+		//Si dichiarano due variabili per recuperare gli attributi
+		NamedNodeMap attribute; 
+		
 		//Si scorre l'intero contenuto della lista di nodi antipasti
 		for (int i=0; i<nodeListclass.getLength(); i++) {
 			
 			//Si inserisce l'intero contenuto di ogni elemento in un nodo
 			nodeclass = nodeListclass.item(i);
+			
+			attribute = nodeclass.getAttributes();
 			
 			//Si inserisce in un nodo il contenuto dei nodi figli
 			nodeListstudent = nodeclass.getChildNodes();
@@ -107,8 +113,8 @@ public class DOMParser {
 			
 			System.out.println("-------------------------------------------");
 			
-			//Stampa a video del valore dell'elemento class
-			System.out.println("	Element: " + nodeclass.getNodeName());
+			//Stampa a video del valore dell'elemento class e dei suoi attributi
+			System.out.println("	Element: " + nodeclass.getNodeName() + " " + attribute.getNamedItem("section") + " " + attribute.getNamedItem("specialization"));
 			
 			
 			//Si verifica se sono presenti altri elementi all'interno di un elemento class
