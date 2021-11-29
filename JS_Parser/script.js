@@ -1,3 +1,5 @@
+let xmlhttp;
+
 if (window.XMLHttpRequest) {
   xmlhttp = new XMLHttpRequest(); // code for IE7+, Firefox, Chrome, Opera, Safari
 }
