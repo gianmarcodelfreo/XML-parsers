@@ -19,6 +19,44 @@ xmlhttp.onload = () => {
   // Recupero dell'oggetto all'interno del file XML
   const student = xmlInput.getElementsByTagName("student");
 
+  // // Creazione di un nuovo studente
+  //
+  // const newStudentInfo = `
+  //       <student>
+  //         <name>Giorgio</name>
+  //         <surname>Sandroni</surname>
+  //         <age>17</age>
+  //         <gender>Maschio</gender>
+  //         <dateOfBirth>25/12/2004</dateOfBirth>
+  //       </student>
+  // `;
+  //
+  // // aggiunta del nodo utilizzando innerHTML
+  // xmlInput.getElementsByTagName("class")[1].innerHTML += newStudentInfo;
+
+  // SISTEMARE
+  // Metodo utilizzando le API DOM
+  // Ci creiamo tutti gli elementi di cui abbiamo bisogno
+
+  // const newStudent = xmlInput.createElement("student");
+  // const newName= xmlInput.createElement("name");
+  // newName.textContent="Giorgio";
+  // const newSurname= xmlInput.createElement("surname");
+  // newSurname.textContent="Sandroni";
+  // const newAge= xmlInput.createElement("age");
+  // newAge.textContent="17";
+  // const newGender= xmlInput.createElement("gender");
+  // newGender.textContent="Maschio";
+  // const newDateOfBirth= xmlInput.createElement("dateOfBirth");
+  // newDateOfBirth.textContent="25/12/2004";
+
+  // // "Appendiamo" gli elementi appena creati
+
+  // newStudent.appendChild(newName.appendChild(newSurname.appendChild(newAge.appendChild(newGender.appendChild(newDateOfBirth)))));
+
+  // xmlInput.getElementsByTagName("class")[1].appendChild(newStudent);
+
+
   // Recupero dei dati
   for (let i = 0; i < student.length; i++) {
     const studentInfo = {
@@ -56,6 +94,9 @@ xmlhttp.onload = () => {
   console.log("Attributo: ", classTag.getAttribute("specialization"));
   classTag.setAttribute("specialization", "Elettrotecnica");
   console.log("Attributo: ", classTag.getAttribute("specialization"));
+
+
+
 };
 
 xmlhttp.send();
