@@ -34,7 +34,6 @@ xmlhttp.onload = () => {
   // // aggiunta del nodo utilizzando innerHTML
   // xmlInput.getElementsByTagName("class")[1].innerHTML += newStudentInfo;
 
-  // SISTEMARE
   // Metodo utilizzando le API DOM
   // Ci creiamo tutti gli elementi di cui abbiamo bisogno
 
@@ -52,10 +51,13 @@ xmlhttp.onload = () => {
 
   // // "Appendiamo" gli elementi appena creati
 
-  // newStudent.appendChild(newName.appendChild(newSurname.appendChild(newAge.appendChild(newGender.appendChild(newDateOfBirth)))));
+  // newStudent.appendChild(newName);
+  // newStudent.appendChild(newSurname);
+  // newStudent.appendChild(newAge);
+  // newStudent.appendChild(newGender);
+  // newStudent.appendChild(newDateOfBirth);
 
   // xmlInput.getElementsByTagName("class")[1].appendChild(newStudent);
-
 
   // Recupero dei dati
   for (let i = 0; i < student.length; i++) {
