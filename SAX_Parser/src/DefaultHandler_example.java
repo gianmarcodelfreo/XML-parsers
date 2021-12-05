@@ -35,14 +35,12 @@ public class DefaultHandler_example extends DefaultHandler {
 
         System.out.println("\n" + tabber + "Inizio dell'elemento : " + qName);
 
-        if (qName.equalsIgnoreCase("section")) {
-            String section = attributes.getValue("section");
-            System.out.println(tabber + "Sezione : " + section);
-        }
-
-        if (qName.equalsIgnoreCase("specialization")) {
-            String specialization = attributes.getValue("specialization");
-            System.out.println(tabber + "Specializzazione : " + specialization);
+        if(attributes != null && attributes.getLength() > 0){
+        	this.tabber += "\t";
+            for(int i=0; i<attributes.getLength(); i++){
+                System.out.println(tabber+attributes.getLocalName(i)+" : "+attributes.getValue(i));
+            }
+            this.tabber = this.tabber.replaceFirst("\t", "");
         }
         this.tabber += "\t";
     }
