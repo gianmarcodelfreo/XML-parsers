@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?display table-view?>
-<School xmlns:"https://raw.githubusercontent.com/Gian-Marco-Del-Freo/XML-parsers/main/inputs/template.xsd">
+<School xmlns:"https://raw.githubusercontent.com/Gian-Marco-Del-Freo/XML-parsers/main/inputs">
     <class section="5" specialization="Informatica">
         <student>
           <name>Tommaso</name>
