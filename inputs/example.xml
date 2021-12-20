@@ -2,13 +2,13 @@
 <?display table-view?>
 <School>
     <class section="5" specialization="Informatica">
-        <student>
+        <fgsfs>
           <name>Tommaso</name>
           <surname>Parenti</surname>
           <age>18</age>
           <gender>Uomo</gender>
           <dateOfBirth>2003-03-10</dateOfBirth>
-        </student>
+        </fgsfs>
         <student>
           <name>Gian Marco</name>
           <surname>Del Freo</surname>
