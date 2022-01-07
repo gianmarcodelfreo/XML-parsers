@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Iterator;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
@@ -67,8 +68,8 @@ public class DefaultHandler_example extends DefaultHandler {
             System.out.println(tabber + "gender : " + currentValue.toString());
         }
 
-        if (qName.equalsIgnoreCase("dataOfBirth")) {
-            System.out.println(tabber + "dataOfBirth : " + currentValue.toString());
+        if (qName.equalsIgnoreCase("dateOfBirth")) {
+            System.out.println(tabber + "dateOfBirth : " + currentValue.toString());
         }
 
         this.tabber = this.tabber.replaceFirst("\t", "");
