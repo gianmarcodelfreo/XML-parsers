@@ -10,6 +10,7 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
@@ -26,16 +27,23 @@ public class SAXParser_example {
 
     public static void main(String[] args) {
         try {
-            //Validazione con XSD
-            URL urlXSD = new URL("https://raw.githubusercontent.com/Gian-Marco-Del-Freo/XML-parsers/main/inputs/template.xsd");
+            //Files
+        	URL urlXSD = new URL("https://raw.githubusercontent.com/Gian-Marco-Del-Freo/XML-parsers/main/inputs/template.xsd");
             URL urlXML = new URL("https://raw.githubusercontent.com/Gian-Marco-Del-Freo/XML-parsers/main/inputs/example.xml");
             Source xmlFile = new StreamSource(urlXML.openStream());
+            	//Source xmlFile = new StreamSource("src/source/example.xml");
+            	//Source xsdFile = new StreamSource("src/source/template.xsd");
+            
+            
+        	//Validazione con XSD
             SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
             Schema schema = schemaFactory.newSchema(urlXSD);
+            	//Schema schema = schemaFactory.newSchema(xsdFile);
             Validator validator = schema.newValidator();
             validator.validate(xmlFile);
             System.out.println("✅ Documento valido ✅ \n");
 
+            
             //Creazione SaxParser
             SAXParserFactory factory = SAXParserFactory.newInstance();
             factory.setNamespaceAware(true);
@@ -43,8 +51,10 @@ public class SAXParser_example {
             SAXParser saxParser = factory.newSAXParser();
             saxParser.setProperty(JAXP_SCHEMA_LANGUAGE, W3C_XML_SCHEMA);
             saxParser.setProperty(JAXP_SCHEMA_SOURCE, "https://raw.githubusercontent.com/Gian-Marco-Del-Freo/XML-parsers/main/inputs/template.xsd");
+            	//saxParser.setProperty(JAXP_SCHEMA_SOURCE, new File("src/source/template.xsd"));
             DefaultHandler_example handler = new DefaultHandler_example();
             saxParser.parse(urlXML.openStream(), handler);
+            	//saxParser.parse("src/source/example.xml", handler);
         } catch (SAXException | IOException | ParserConfigurationException e) {
             System.out.println("⚠️ E' avvenuto un errore durante il parsing ⚠️: " + e);
         }
